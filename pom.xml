@@ -14,7 +14,10 @@
  </exclusions>-->
   <name>lessons-ui-autotests-february</name>
 
+  <packaging>jar</packaging> <!--упаковывает проек в jar-->
+
   <properties>      <!--добавляются версии библиотек, если хотим явно вынести наверх из dependency xnj , что бы видеть все зависимости вместе-->
+    <selenium.version>2.3.0</selenium.version><!--можно указать в <properties> версию , заменив на такой скрипт для удобства если библиотек много-->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <!--<maven.compiler.source>1.7</maven.compiler.source>  закрыл потому что плагин изменил на 7 версию
     <maven.compiler.target>1.7</maven.compiler.target>-->
@@ -26,7 +29,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-    <version>2.3.0</version>
+    <version>${selenium.version}</version><!--можно указать в <properties> версию , заменив на такой скрипт для удобства если библиотек много-->
 
     </dependency>
 
@@ -50,6 +53,11 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+    <!-- <dependency>
+     <groupId>org.example</groupId>  -можно выставить зависимость к проекту example-->
+      <!--<artifactId>example.project</artifactId>
+      <version>2.0-SNAPSHOT</version>
+    </dependency>-->
   </dependencies>
 <!--   плагины (то что делает какие либо операции в mavin) нужны для выполнения каких либо действий-->
   <build>
@@ -60,8 +68,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.10.0</version>
         <configuration>  <!--настройки плагина-->
-          <source>7</source><!--указать какую версию java использовать-->
-          <target>7</target>
+          <source>15</source><!--указать какую версию java использовать-->
+          <target>15</target>
         </configuration>
       </plugin>
 
@@ -71,6 +79,17 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.0.0-M5</version>
 </plugin>
+      <plugin><!-- https://mvnrepository.com/artifact/ru.yandex.qatools.allure/allure-maven-plugin -->
+          <groupId>ru.yandex.qatools.allure</groupId>
+          <artifactId>allure-maven-plugin</artifactId>
+          <version>2.6</version>
+      </plugin>
+      <plugin>
+        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-site-plugin -->
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>3.11.0</version>
+      </plugin>
     </plugins>
    <!-- <pluginManagement>--> <!--lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
     <!-- <plugins>

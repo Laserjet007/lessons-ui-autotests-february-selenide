@@ -1,10 +1,7 @@
 package ru.gb.lessons;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -38,10 +35,18 @@ public class App {
         //new WebDriverWait(webDriver,5,500).until(                                             //ожидание , когда элемент станет видимым (именно элемент, а не как в предидущей строке - локатор)
         //      ExpectedConditions.visibilityOf(webDriver.findElement(By.xpath("//div[@class='modal__login']"))));
         modal__login.findElement(By.name("email")).sendKeys("laserjet007@rambler.ru");//ищем внутри созданной переменной, найти элемент по имени. sendKeys -ввод текста
-        modal__login.findElement(By.name("password")).sendKeys("999999999");          //то же самое с вводом пароля
+        modal__login.findElement(By.name("password")).sendKeys("999999999");       //то же самое с вводом пароля
         modal__login.findElement(By.className("btn__txt")).click();
         webDriver.findElement(By.xpath("//div[@class='signin-link']//span[@class='signin-link__title']")).click();
+        //new WebDriverWait(webDriver,5).until(                                                 //подождать когда исчезнет элемент  в случае если он висит
+        //        ExpectedConditions.invisibilityOf(modal__login));
         webDriver.findElement(By.xpath("//div[@class='dropdown-menu show']//a[text()='Выйти']")).click();
+//TODO:переделать в Selenide, костыль не нужен
+        try {
+            modal__login.findElement(By.cssSelector("div.header_user")).click();
+        }catch (StaleElementReferenceException e){
+            modal__login.findElement(By.cssSelector("div.header_user")).click();
+        }
 
         //modal__login.findElement(By.cssSelector("div.header_user")).click();                  //поиск по css селектору
                // Thread.sleep(36000);                                                          //остановка на 10 секунд проверить откроется ли страница

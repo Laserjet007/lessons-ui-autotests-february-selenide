@@ -41,12 +41,14 @@ public class App {
         //new WebDriverWait(webDriver,5).until(                                                 //подождать когда исчезнет элемент  в случае если он висит
         //        ExpectedConditions.invisibilityOf(modal__login));
         webDriver.findElement(By.xpath("//div[@class='dropdown-menu show']//a[text()='Выйти']")).click();
-//TODO:переделать в Selenide, костыль не нужен
-        try {
-            modal__login.findElement(By.cssSelector("div.header_user")).click();
-        }catch (StaleElementReferenceException e){
-            modal__login.findElement(By.cssSelector("div.header_user")).click();
-        }
+
+        //Thread.sleep(5000);
+        //TODO:переделать в Selenide, костыль не нужен
+        //try {
+        //   modal__login.findElement(By.cssSelector("div.header_user")).click();
+        //}catch (StaleElementReferenceException e){
+        //   modal__login.findElement(By.cssSelector("div.header_user")).click();
+        //}
 
         //modal__login.findElement(By.cssSelector("div.header_user")).click();                  //поиск по css селектору
                // Thread.sleep(36000);                                                          //остановка на 10 секунд проверить откроется ли страница

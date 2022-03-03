@@ -7,17 +7,17 @@
   <groupId>ru.gb.lessons</groupId>
   <artifactId>lessons-ui-autotests-february</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <!--<scope>test</scope>       //  <scope>test</scope - разграничение власти определенных библиотек (условия когда ее можно использовать) для папки test-->
+  <!--<scope>test</scope>                                  //  <scope>test</scope - разграничение власти определенных библиотек (условия когда ее можно использовать) для папки test-->
   <!--<exclusions> исключения -->
   <!-- <groupId></groupId>
    <artifactId></artifactId>
  </exclusions>-->
   <name>lessons-ui-autotests-february</name>
 
-  <packaging>jar</packaging> <!--упаковывает проек в jar-->
+  <packaging>jar</packaging>                               <!--упаковывает проек в jar-->
 
-  <properties>      <!--добавляются версии библиотек, если хотим явно вынести наверх из dependency xnj , что бы видеть все зависимости вместе-->
-    <selenium.version>3.141.59</selenium.version><!--можно указать в <properties> версию , заменив на такой скрипт для удобства если библиотек много-->
+  <properties>                                             <!--добавляются версии библиотек, если хотим явно вынести наверх из dependency xnj , что бы видеть все зависимости вместе-->
+    <selenium.version>3.141.59</selenium.version>          <!--можно указать в <properties> версию , заменив на такой скрипт для удобства если библиотек много-->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <!--<maven.compiler.source>1.7</maven.compiler.source>  закрыл потому что плагин изменил на 7 версию
     <maven.compiler.target>1.7</maven.compiler.target>-->
@@ -28,7 +28,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-    <version>${selenium.version}</version><!--можно указать в <properties> версию , заменив на такой скрипт для удобства если библиотек много-->
+    <version>${selenium.version}</version>                   <!--можно указать в <properties> версию , заменив на такой скрипт для удобства если библиотек много-->
     </dependency>
     <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
     <dependency>
@@ -57,12 +57,12 @@
       <scope>test</scope>
     </dependency>
     <!-- <dependency>
-     <groupId>org.example</groupId>  -можно выставить зависимость к проекту example-->
+     <groupId>org.example</groupId>                                                             -можно выставить зависимость к проекту example-->
       <!--<artifactId>example.project</artifactId>
       <version>2.0-SNAPSHOT</version>
     </dependency>-->
   </dependencies>
-<!--   плагины (то что делает какие либо операции в mavin) нужны для выполнения каких либо действий-->
+                                                                                     <!--   плагины (то что делает какие либо операции в mavin) нужны для выполнения каких либо действий-->
   <build>
     <plugins>
       <plugin>
@@ -70,13 +70,13 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.10.0</version>
-        <configuration>  <!--настройки плагина-->
-          <source>15</source><!--указать какую версию java использовать-->
+        <configuration>                                                            <!--настройки плагина-->
+          <source>15</source>                                                      <!--указать какую версию java использовать-->
           <target>15</target>
         </configuration>
       </plugin>
 
-      <plugin> <!-- отвечает за тесты без них тесты будут падать-->
+      <plugin>                                                                    <!-- отвечает за тесты без них тесты будут падать-->
         <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -93,13 +93,13 @@
           <artifactId>maven-site-plugin</artifactId>
           <version>3.11.0</version>
       </plugin>
-      <!--<plugin>   добавление плагина  созданного в ручную
+                                                                                 <!--<plugin>   добавление плагина  созданного в ручную
         <groupId>org.example</groupId>
         <artifactId>custom-plugin</artifactId>
         <version>1.0-SNAPSHOT</version>
       </plugin>-->
     </plugins>
-   <!-- <pluginManagement>--> <!--lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+<!-- <pluginManagement>--> <!--lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
     <!-- <plugins>
        clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
     <!--   <plugin>

@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 /**
  *
  */
-public class App {
+public class LoginAndLogout {
     public static void main(String[] args) throws InterruptedException {
 /**    System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");     говорим библиотеке webdriver где хранится chromdriver, который запустит браузер
 *      WebDriver webDriver = new ChromeDriver();                                                 создаем класс с которым будем работать

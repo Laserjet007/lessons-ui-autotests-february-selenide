@@ -20,11 +20,11 @@ public class AddProductToCart {
 
         new Actions(webDriver)                                                              //способ накидать каких - либо действий (в данном случае на локатор билдер)
                 .moveToElement(webDriver.findElement(By.xpath("//div[@class='catalog-nav__section-list']//span[@class='catalog-nav__section-list-li-title']")))  //взять элемент
-                //.clickAndHold()                                                           //сказать что хотим его нажать.  либо использовать трекинтроп
+                .clickAndHold()                                                           //сказать что хотим его нажать.  либо использовать трекинтроп
                 .build()                                                                    // в нашем билдере
                 .perform();                                                                 //выполнить
 
-        //webDriver.findElement(By.xpath("//div[@class='product-tile__buy']//button[@onclick='add2basket(119543)']//span")).click();
+        webDriver.findElement(By.xpath("")).click();
 
 
 

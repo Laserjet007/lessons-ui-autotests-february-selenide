@@ -36,10 +36,10 @@ public class AddProductToCart {
                 .findFirst()                                                                 //находим первый элемент
                 .orElseThrow(() -> new NoSuchElementException("productName"));               //если такого элемента нет - выброси ошибку
                  selectedProduct.findElement(By.className("btn__txt")).click();              //найдем внутри элемент
-        Thread.sleep(16000);
+
         //webDriver.findElement(By.xpath(
               //  "//div[@class='collection-preview']//a[text()='Chelsea серый/туя']/@href")).click();
-
+        Thread.sleep(16000);
 
         webDriver.quit();
     }

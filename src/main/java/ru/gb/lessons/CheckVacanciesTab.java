@@ -27,8 +27,8 @@ public class CheckVacanciesTab {
         System.out.print("Actual products: ");
 
         webDriver.findElement(By.className("table"))
-                .findElements(By.xpath("//table[@class='table']//th[@class='vacancy-table__head'][text()='Вакансия']"))                                // взять детей элемента и вывести внутренний
-                .forEach(product -> System.out.print(product.getText() + " "));            //+ " "  добавить пробел, что бы не писать вместе
+                .findElements(By.xpath("//table[@class='table']//th[@class='vacancy-table__head'][text()='Вакансия']"))
+                .forEach(product -> System.out.print(product.getText() + " "));
         System.out.println();
         System.out.println("Expected product: " + productName);
 

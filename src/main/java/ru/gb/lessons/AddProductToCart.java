@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 public class AddProductToCart {
     public static void main(String[] args) throws InterruptedException {
-        String productName ="9 600 Р/мес.";                                            //(для поиска элементов по div) выносим отдельную переменную для строки 35
+        String productName ="9 600 Р/мес.";                                                 //(для поиска элементов по div) выносим отдельную переменную для строки 35
         //String composition1Name ="Композиция №08, спальня (2FCC+H1E+AS6Мelange996+K1C+E1C+ZFE)";
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--blink-settings=imagesEnabled=false");
@@ -49,17 +49,16 @@ public class AddProductToCart {
         /**   пример просмотра xpath на исчезающем элементе (остановка для решения различных задач) - пишется в консоли
  *                setTimeout(function() {debugger;}, 3000)
 */
-        Thread.sleep(16000);
 //вывод текста в терминал (типа асерта)
         System.out.print("Actual products: ");
 
-        webDriver.findElement(By.className("items-in-basket__item-inner")) //берем блок элементов
+        webDriver.findElement(By.className("items-in-basket__item-inner"))                 //берем блок элементов
                 .findElements(By.xpath("./a"))                                // взять детей элемента и вывести внутренний
-                .forEach(product -> System.out.print(product.getText() + " "));              //+ " "  добавить пробел, что бы не писать вместе
-
+                .forEach(product -> System.out.print(product.getText() + " "));            //+ " "  добавить пробел, что бы не писать вместе
+        System.out.println();
         System.out.println("Expected product: " + productName);
 
-
+        //Thread.sleep(16000);
         webDriver.quit();
     }
 

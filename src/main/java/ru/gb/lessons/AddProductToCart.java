@@ -38,10 +38,12 @@ public class AddProductToCart {
                 .orElseThrow(() -> new NoSuchElementException("productName"));               //если такого элемента нет - выброси ошибку
                  selectedProduct.findElement(By.className("btn__txt")).click();              //найдем внутри элемент
 
-        Thread.sleep(6000);
 
         webDriver.findElement(By.xpath(
                 "//button[@onclick='add2basket(119543)']")).click();
+        webDriver.findElement(By.xpath(
+                "//div[@class='offer-block']//button")).click();
+
 
         Thread.sleep(16000);
 

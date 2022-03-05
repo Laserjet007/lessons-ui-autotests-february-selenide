@@ -40,22 +40,9 @@ public class AddProductToCart {
 
         Thread.sleep(6000);
 
-        List<WebElement> composition1 = webDriver.findElements(By.xpath("//div[@class='product-tile__main']]"));
-        composition1.stream()
-                .filter(composition -> composition.findElement(
-                        By.xpath(".//div[@class='product-tile__main']//div[@class='product-tile__offer']")).getText().equals("Композиция №08, спальня (2FCC+H1E+AS6Мelange996+K1C+E1C+ZFE)"))
-                        .findFirst()
-                        .orElseThrow(() -> new NoSuchElementException("composition1Name"));
-                        selectedProduct.findElement(By.className("btn btn-primary")).click();
-/*      List<WebElement> composition = webDriver.findElements(By.xpath(                         //findElement (найти все элементы в данном div(Найдем все карточки, а потом будем с ними работать))
-                "//div[@class='product-tile__main']]"));
-        WebElement selectedComposition = composition.stream()                                       //пробрасываем запрос
-                .filter(composition -> composition.findElement(By.xpath(".//a[text()='Композиция №08, спальня (2FCC+H1E+AS6Мelange996+K1C+E1C+ZFE)']/@href"))
-                        .getText().equals("Композиция №08, спальня (2FCC+H1E+AS6Мelange996+K1C+E1C+ZFE)"))                                          //фильтруем товары по названию, ищем текст, ищем соответствие
-                .findFirst()                                                                 //находим первый элемент
-                .orElseThrow(() -> new NoSuchElementException("composition"));               //если такого элемента нет - выброси ошибку
-       selectedProduct.findElement(By.className("btn btn-primary")).click();              //найдем внутри элемент
-*/
+        webDriver.findElement(By.xpath(
+                "//button[@onclick='add2basket(119543)']")).click();
+
         Thread.sleep(16000);
 
         webDriver.quit();

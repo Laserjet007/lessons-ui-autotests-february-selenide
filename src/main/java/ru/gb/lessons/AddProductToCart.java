@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 public class AddProductToCart {
     public static void main(String[] args) throws InterruptedException {
-        String productName ="9 600 Р/мес.";                                                 //(для поиска элементов по div) выносим отдельную переменную для строки 35
+        String productName ="ОК";                                                            //(для поиска элементов по div) выносим отдельную переменную для строки 35
         //String composition1Name ="Композиция №08, спальня (2FCC+H1E+AS6Мelange996+K1C+E1C+ZFE)";
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--blink-settings=imagesEnabled=false");

@@ -26,14 +26,13 @@ public class CheckApartmentProjectsWithFurniture {
 
         //вывод текста в терминал (типа асерта)
         System.out.print("Actual products: ");
-
         webDriver.findElement(By.className("product-tile__title"))
                 .findElements(By.xpath("//a[text()='Шкаф 1дв. с зерк. (5 полок)']"))
                 .forEach(product -> System.out.print(product.getText() + " "));
         System.out.println();
         System.out.println("Expected product: " + productName);
-        Thread.sleep(16000);
-       webDriver.quit();
+
+        webDriver.quit();
     }
 
 }

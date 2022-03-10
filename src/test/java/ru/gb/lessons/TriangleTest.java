@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
- * Unit test for simple LoginAndLogout.
+ * неудобство таких тестов в том, что не покрывают все позитивные сценарии (классы эквивалентности). так в общем не пишут
  */
 public class TriangleTest {
     @Test

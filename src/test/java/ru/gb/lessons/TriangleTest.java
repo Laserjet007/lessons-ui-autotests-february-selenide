@@ -1,6 +1,7 @@
 package ru.gb.lessons;
 
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.gb.lessons.lesson_4.Triangle;
@@ -11,8 +12,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 /**
  * неудобство таких тестов в том, что не покрывают все позитивные сценарии (классы эквивалентности). так в общем не пишут
  */
+
+@Disabled("Перенесены в параметризированные тесты")                //отключение теста всех тестов
 public class TriangleTest {
     @Test
+    @Disabled("Перенесены в параметризированные тесты")            //отключение теста
     @DisplayName("Периметр треугольника 3, 4, 5 должен быть равен 12")   //название теста
     public void countPerimeterEgyptTriangleSuccessfulTest() {      //указываем метод, который хотим протестировать. countPerimeterEgyptTriangleSuccessfulTest - площадь периметра... - так писать не обязательно, зависит от проэкта
        // new Actions(new ChromeDriver());                         заглушка до написания самих тестов, что бы код не ломался
@@ -24,13 +28,15 @@ public class TriangleTest {
     }
 //unit tests - положительные: первые три теста почти одинаковые (отличаются только входные данные и ожидаемые результаты)
     @Test
-    @DisplayName("Периметр треугольника 3, 4, 6 должен быть равен 12")
+    @Disabled("Перенесены в параметризированные тесты")
+    @DisplayName("Периметр треугольника 3, 4, 6 должен быть равен 13")
     public void countPerimeterGreater90TriangleSuccessfulTest() {
         Triangle triangle = new Triangle(3, 4, 6);
         int perimeter = triangle.countPerimeter();
         assertEquals(13,perimeter);
     }
     @Test
+    @Disabled("Перенесены в параметризированные тесты")
     @DisplayName("Периметр треугольника 3, 3, 3 должен быть равен 9")
     public void countPerimeterWithEqualSidesTriangleSuccessfulTest() {
         Triangle triangle = new Triangle(3, 3, 3);

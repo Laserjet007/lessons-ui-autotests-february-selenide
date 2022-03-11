@@ -12,7 +12,7 @@ public class Triangle {
     private int a;                                                //стороны
     private int b;
     private int c;
-
+    private Colour colour;                                        //красим треугольник (создаем класс дополнительный - public enum Colour
     private void checkSidesArePositive(){                         //пишем отдельный метод
         if (a <= 0 || b <= 0 || c <= 0) {                         //где указываем что a <= 0 или b <= 0 или c <= 0
             throw new IllegalArgumentException("Sides must be positive");  //то в этом случае кидаем новую ошибку

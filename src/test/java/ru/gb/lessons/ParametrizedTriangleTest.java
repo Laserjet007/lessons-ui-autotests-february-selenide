@@ -9,10 +9,14 @@ import ru.gb.lessons.lesson_4.Triangle;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ParametrizedTriangleTest {
     public static Stream<Arguments> triangles() {
-        return Stream.of(Arguments.of(new Triangle(3,4,5), 12)); //метод состоит из аргументов. в аргумент Arguments.of() пишем параметры, которые хотели проверить
+        return Stream.of(Arguments.of(new Triangle(3,4,5), 12), //метод состоит из аргументов. в аргумент Arguments.of() пишем параметры, которые хотели проверить
+                Arguments.of(new Triangle(3,4,6), 13),                 //для других тестов тоже самое
+                Arguments.of(new Triangle(3,3,3), 9)
+        );
     }
 
     @ParameterizedTest(name = "Периметр треугольника: позитивный сценарий, периметр треугольника {0} == {1}")//добавляем имя, равное 0 = 1
@@ -23,4 +27,29 @@ public class ParametrizedTriangleTest {
         int perimeter = triangle.countPerimeter();                                  //следующая часть - Act:
         assertEquals(expectedResult,perimeter);                                     //третья часть - Assert:
     }
+    public static Stream<Arguments> negativeTriangles() {
+        return Stream.of(Arguments.of(new Triangle(0,3,3), "Sides must be positive"), //метод состоит из аргументов. в аргумент Arguments.of() пишем параметры, которые хотели проверить
+                Arguments.of(new Triangle(3,0,3), "Sides must be positive"),                 //для других тестов тоже самое
+                Arguments.of(new Triangle(3,3,0), "Sides must be positive"),
+                Arguments.of(new Triangle(3,3,-1), "Sides must be positive"),
+                Arguments.of(new Triangle(3,-1,3), "Sides must be positive"),
+                Arguments.of(new Triangle(-1,3,3), "Sides must be positive"),
+                Arguments.of(new Triangle(-1,3,3), "Sides must be positive"),
+                Arguments.of(new Triangle(6,1,1), "One side can' be greater than sum of others"),
+                Arguments.of(new Triangle(1,2,1), "One side can' be greater than sum of others")
+                );
+    }
+    @ParameterizedTest(name = "Периметр треугольника: негативный сценарий (треугольника {0} ошибка: {1}")
+    @MethodSource("negativeTriangles")
+    @DisplayName("проверка правильности получившихся сторон:")
+    public void countPerimeterNegativeTest(Triangle triangle, String errorText) {
+        IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, triangle::countPerimeter);  //понять, что есть ошибка - пишем какую ошибку ожидаем
+        assertEquals(errorText, illegalArgumentException.getMessage());
+    }
+
+
+
+
+
+
 }

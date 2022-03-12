@@ -13,6 +13,14 @@ public class Triangle {
     private int b;
     private int c;
     private Colour colour;                                        //красим треугольник (создаем класс дополнительный - public enum Colour
+
+    public Triangle(int a, int b, int c) {                        //строим конструктор для colour.
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        colour = Colour.WHITE;                                    //Если не указывается какая сторона, то дефолтная сторона белая. Если указываем - то цвет берем из конструктора colour
+    }
+
     private void checkSidesArePositive(){                         //пишем отдельный метод
         if (a <= 0 || b <= 0 || c <= 0) {                         //где указываем что a <= 0 или b <= 0 или c <= 0
             throw new IllegalArgumentException("Sides must be positive");  //то в этом случае кидаем новую ошибку

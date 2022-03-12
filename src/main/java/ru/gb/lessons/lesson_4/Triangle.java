@@ -38,4 +38,12 @@ public class Triangle {
         checkOneSideIsSmallerThanSumOfOthers();
              return a + b + c;                                     // с начала возвращаем 0 - не пишем реализацию
     }
+    public void paint(Colour colour) {                             // метод
+        if (this.colour == colour) {                               //условие, что если colour совпадает с цветом которым хотим перекрасить - тогда ошибка (для примера, если допустить, что так написано в спецификации)
+            throw new IllegalArgumentException("New color must not be equal to old color");
+        }
+        this.colour = colour;
+    }
+
+
 }

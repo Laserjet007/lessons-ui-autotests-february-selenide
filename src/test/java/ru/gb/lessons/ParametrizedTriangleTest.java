@@ -1,9 +1,12 @@
 package ru.gb.lessons;
 
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.MethodSource;
+import ru.gb.lessons.lesson_4.Colour;
 import ru.gb.lessons.lesson_4.Triangle;
 
 import java.util.stream.Stream;
@@ -46,10 +49,14 @@ public class ParametrizedTriangleTest {
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, triangle::countPerimeter);  //понять, что есть ошибка - пишем какую ошибку ожидаем
         assertEquals(errorText, illegalArgumentException.getMessage());
     }
-
-
-
-
-
+//Тесты для colour треугольника (пример с assumptions не естественный т.к. обычно используется в больших проектах, для проверки всех сред на случай недоступности)
+    @ParameterizedTest                                                                //добавляем тестовый метод
+    @EnumSource(Colour.class)                                                         // от сюда берем данные для передачи в  Triangle triangle = new Triangle(3, 3, 3)
+    void paintTriangleTest(Colour colour) {                                           //Colour colour принимаем и перекрашиваем в определенный цвет
+        Triangle triangle = new Triangle(3, 3, 3);                           //создаем треугольник для примера - неважно какого цвета и с какими сторонами
+        Assumptions.assumeFalse(triangle.getColour().equals(colour));                 //для проверки всех сред на случай недоступности (заглушка для теста на цвет WHILE)
+        triangle.paint(colour);                                                       //перекрасим в новый цвет
+        assertEquals(colour, triangle.getColour());                                   //будем проверять, что новый цвет подходит
+    }
 
 }

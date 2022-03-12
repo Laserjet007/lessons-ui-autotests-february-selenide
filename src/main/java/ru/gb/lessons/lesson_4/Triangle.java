@@ -44,6 +44,9 @@ public class Triangle {
         }
         this.colour = colour;
     }
-
+//еще способ параметризации (метод paint с передачей строки)
+        public void paint(String colour) {                          //передаем строку
+            paint(Colour.valueOf(colour));                          //вызываем paint (все то же самое как в предидущем конструкторе, только передаем строку аргументов)
+            }
 
 }

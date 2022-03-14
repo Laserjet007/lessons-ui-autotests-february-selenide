@@ -39,7 +39,6 @@ public class ParametrizedTriangleTest {
     @DisplayName("Тест с прокидыванием параметров")                                  //название теста
     @MethodSource("triangles")                                                       //способов прокидывать много, вот один из них (берутся аргументы из методов-создаем выше метод triangles) .https:junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests
     void countPerimeterPositiveTest(Triangle triangle, int expectedResult) {//прокидываем параметры: тестовое тело будет оставаться одним и тем же с TriangleTest, но параметры будут разные. int expectedResult - ожидаемый результат. int perimeter - периметр треугольника {0} == {1}
-
         int perimeter = triangle.countPerimeter();                                  //следующая часть - Act:
         assertEquals(expectedResult,perimeter);                                     //третья часть - Assert:
     }
@@ -62,23 +61,23 @@ public class ParametrizedTriangleTest {
         IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, triangle::countPerimeter);  //понять, что есть ошибка - пишем какую ошибку ожидаем
         assertEquals(errorText, illegalArgumentException.getMessage());
     }
-//Тесты для colour треугольника (пример с assumptions не естественный т.к. обычно используется в больших проектах, для проверки всех сред на случай недоступности)
-    @ParameterizedTest                                                                //добавляем тестовый метод
-    @EnumSource(Colour.class)                                                         // от сюда берем данные для передачи в  Triangle triangle = new Triangle(3, 3, 3)
-    void paintTriangleTest(Colour colour) {                                           //Colour colour принимаем и перекрашиваем в определенный цвет
-        Triangle triangle = new Triangle(3, 3, 3);                           //создаем треугольник для примера - неважно какого цвета и с какими сторонами
-        Assumptions.assumeFalse(triangle.getColour().equals(colour));                 //для проверки всех сред на случай недоступности (заглушка для теста на цвет WHILE)
-        triangle.paint(colour);                                                       //перекрасим в новый цвет
-        assertEquals(colour, triangle.getColour());                                   //будем проверять, что новый цвет подходит
-    }
-//тест на способ параметризации (метод paint с передачей строки) из/ triangle
-    @ParameterizedTest
-    @ValueSource(strings = {"BLUE", "RED", "GREY"}) //аннотация, где могут передаваться определенные параметры которые хотим передать. {"BLUE".....} - список стрингов, которые хотим видеть
-    void paintTriangleTest(String colour) {                                           //Colour colour принимаем и перекрашиваем в определенный цвет
-        Triangle triangle = new Triangle(3, 3, 3);
-        triangle.paint(colour);                                                       //перекрасим в новый цвет
-        assertEquals(colour, triangle.getColour().toString());                        //будем проверять, что новый цвет подходит через строку
-    }
+    //Тесты для colour треугольника (пример с assumptions не естественный т.к. обычно используется в больших проектах, для проверки всех сред на случай недоступности)
+    //@ParameterizedTest                                                                //добавляем тестовый метод
+    //@EnumSource(Colour.class)                                                         // от сюда берем данные для передачи в  Triangle triangle = new Triangle(3, 3, 3)
+    //void paintTriangleTest(Colour colour) {                                           //Colour colour принимаем и перекрашиваем в определенный цвет
+    //    Triangle triangle = new Triangle(3, 3, 3);                           //создаем треугольник для примера - неважно какого цвета и с какими сторонами
+    //    Assumptions.assumeFalse(triangle.getColour().equals(colour));                 //для проверки всех сред на случай недоступности (заглушка для теста на цвет WHILE)
+    //    triangle.paint(colour);                                                       //перекрасим в новый цвет
+     //   assertEquals(colour, triangle.getColour());                                   //будем проверять, что новый цвет подходит
+    //}
+    //тест на способ параметризации (метод paint с передачей строки) из/ triangle
+    //@ParameterizedTest
+    //@ValueSource(strings = {"BLUE", "RED", "GREY"}) //аннотация, где могут передаваться определенные параметры которые хотим передать. {"BLUE".....} - список стрингов, которые хотим видеть
+    //void paintTriangleTest(String colour) {                                           //Colour colour принимаем и перекрашиваем в определенный цвет
+    //    Triangle triangle = new Triangle(3, 3, 3);
+    //    triangle.paint(colour);                                                       //перекрасим в новый цвет
+    //    assertEquals(colour, triangle.getColour().toString());                        //будем проверять, что новый цвет подходит через строку
+    //}
     //тест на способ параметризации (метод paint с передачей строки) из/ triangle
     @ParameterizedTest
     @CsvSource(value = {"BLUE,RED", "RED,WHITE", "GREY,BLUE"})                                   //Csv аннотация - работа через exele файлы(импорт их в текст), где могут передаваться определенные параметры которые хотим передать. {"BLUE".....} - список стрингов, которые хотим видеть. "BLUE,RED" - параметры можно только прописать в условиях (например поменять ред на блу)
@@ -90,22 +89,28 @@ public class ParametrizedTriangleTest {
 //добавление других @BeforeEach в тест
     @Nested                                                                           //помечаем аннотацией
     public class TriangleCreatingBeforeTest  {                                        //создаем внутренний класс
-                                                                                      //сюда определяем те тесты, где мы создаем перед каждым тестом треугольник
+    Triangle triangle;                                                                //это поле будет создаваться для каждого теста по новому, сюда определяем те тесты, где мы создаем перед каждым тестом треугольник
+//Тест для colour треугольника (пример с assumptions не естественный т.к. обычно используется в больших проектах, для проверки всех сред на случай недоступности)
+    @BeforeEach
+    void setUp() {
+        triangle = new Triangle(3, 3, 3);                                    //создаем треугольник для примера - неважно какого цвета и с какими сторонами
+    }
+    @ParameterizedTest                                                                //добавляем тестовый метод
+    @EnumSource(Colour.class)                                                         // от сюда берем данные для передачи в  Triangle triangle = new Triangle(3, 3, 3)
+    void paintTriangleTest(Colour colour) {                                           //Colour colour принимаем и перекрашиваем в определенный цвет
+        Assumptions.assumeFalse(triangle.getColour().equals(colour));                 //для проверки всех сред на случай недоступности (заглушка для теста на цвет WHILE)
+        triangle.paint(colour);                                                       //перекрасим в новый цвет
+        assertEquals(colour, triangle.getColour());                                   //будем проверять, что новый цвет подходит
+    }
+//тест на способ параметризации (метод paint с передачей строки) из/ triangle
     @ParameterizedTest
     @ValueSource(strings = {"BLUE", "RED", "GREY"})                                   //аннотация, где могут передаваться определенные параметры которые хотим передать. {"BLUE".....} - список стрингов, которые хотим видеть
     void paintTriangleTest(String colour) {                                           //Colour colour принимаем и перекрашиваем в определенный цвет
-        Triangle triangle = new Triangle(3, 3, 3);
         triangle.paint(colour);                                                       //перекрасим в новый цвет
         assertEquals(colour, triangle.getColour().toString());                        //будем проверять, что новый цвет подходит через строку
     }
-                                                                                      //тест на способ параметризации (метод paint с передачей строки) из/ triangle
-    @ParameterizedTest
-    @CsvSource(value = {"BLUE,RED", "RED,WHITE", "GREY,BLUE"})                        //Csv аннотация - работа через exele файлы(импорт их в текст), где могут передаваться определенные параметры которые хотим передать. {"BLUE".....} - список стрингов, которые хотим видеть. "BLUE,RED" - параметры можно только прописать в условиях (например поменять ред на блу)
-    void paintTriangleTest(Colour oldColour, String newColour) {                      //сюда принимаем параметры и перекрашиваем в определенный цвет
-        Triangle triangle = new Triangle(3, 3, 3, oldColour);                //oldColour -создаем треугольник
-        triangle.paint(newColour);                                                    //перекрасим в новый цвет
-        assertEquals(newColour, triangle.getColour().toString());                     //будем проверять, что новый цвет равен newColour
-    }
-    }
 
 }
+}
+
+

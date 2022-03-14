@@ -15,6 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @Disabled("Перенесены в параметризированные тесты")                //отключение теста всех тестов
 public class TriangleTest {
+    //@RepeatedTest(10)                                            //проверка стабильности теста, после проверки можно убрать
+
     @Test
     @Disabled("Перенесены в параметризированные тесты")            //отключение теста
     @DisplayName("Периметр треугольника 3, 4, 5 должен быть равен 12")   //название теста

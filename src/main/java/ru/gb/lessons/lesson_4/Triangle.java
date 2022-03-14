@@ -46,7 +46,14 @@ public class Triangle {
     }
 //еще способ параметризации (метод paint с передачей строки)
         public void paint(String colour) {                          //передаем строку
-            paint(Colour.valueOf(colour));                          //вызываем paint (все то же самое как в предидущем конструкторе, только передаем строку аргументов)
+        checkSidesArePositive();                                    //проверяем ошибку из конструктора выше
+        paint(Colour.valueOf(colour));                              //вызываем paint (все то же самое как в предидущем конструкторе, только передаем строку аргументов)
             }
+//метод демонстрирующий работу библиотеки <groupId>org.assertj</groupId>
+public Triangle createSimilarTriangle(int coef) {                   // метод будет создавать "подобные" треугольники (где все стороны больше ему подобного треугольника на кукую то определенную величину (коэффициент подобия - int coef))
+        checkSidesArePositive();                                   //проверяем ошибку из конструктора выше
+        checkOneSideIsSmallerThanSumOfOthers();
+        return new Triangle(a * coef, b * coef, c * coef);  //возвращаем треугольник
+    }
 
 }

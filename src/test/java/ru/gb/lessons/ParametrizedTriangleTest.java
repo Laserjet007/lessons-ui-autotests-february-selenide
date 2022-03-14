@@ -1,7 +1,6 @@
 package ru.gb.lessons;
 
-import org.junit.jupiter.api.Assumptions;
-import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 import ru.gb.lessons.lesson_4.Colour;
@@ -13,7 +12,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ParametrizedTriangleTest {
-    public static Stream<Arguments> triangles() {
+    @BeforeEach                                                                    //метод beforeEach, который готовит данные для всего раздела тестов
+    void setUp(){
+        System.out.println("BeforeEach");                                          //для примера назвали BeforeEach, что бы показать как это будет отображаться
+    }
+    @AfterEach                                                                     //это то же самое что и BeforeEach, только будет выполняться после каждого теста (например если нужно удалять какие-то данные)
+    void tearDown(){
+        System.out.println("AfterEach");
+    }
+    @BeforeAll
+    static void beforeAll(){                                                       //этот метод делает что-либо перед каждым классом
+        System.out.println("BeforeAll");
+    }
+    @AfterAll                                                                      //то же самое что и BeforeAll, только после тестов
+    static void afterAll(){
+        System.out.println("afterAll");
+    }
+        public static Stream<Arguments> triangles() {
         return Stream.of(Arguments.of(new Triangle(3,4,5), 12), //метод состоит из аргументов. в аргумент Arguments.of() пишем параметры, которые хотели проверить
                 Arguments.of(new Triangle(3,4,6), 13),                 //для других тестов тоже самое
                 Arguments.of(new Triangle(3,3,3), 9)
@@ -60,7 +75,7 @@ public class ParametrizedTriangleTest {
     @ParameterizedTest
     @ValueSource(strings = {"BLUE", "RED", "GREY"}) //аннотация, где могут передаваться определенные параметры которые хотим передать. {"BLUE".....} - список стрингов, которые хотим видеть
     void paintTriangleTest(String colour) {                                           //Colour colour принимаем и перекрашиваем в определенный цвет
-        Triangle triangle = new Triangle(3, 3, 3);                           //
+        Triangle triangle = new Triangle(3, 3, 3);
         triangle.paint(colour);                                                       //перекрасим в новый цвет
         assertEquals(colour, triangle.getColour().toString());                        //будем проверять, что новый цвет подходит через строку
     }
@@ -72,4 +87,25 @@ public class ParametrizedTriangleTest {
         triangle.paint(newColour);                                                    //перекрасим в новый цвет
         assertEquals(newColour, triangle.getColour().toString());                     //будем проверять, что новый цвет равен newColour
     }
+//добавление других @BeforeEach в тест
+    @Nested                                                                           //помечаем аннотацией
+    public class TriangleCreatingBeforeTest  {                                        //создаем внутренний класс
+                                                                                      //сюда определяем те тесты, где мы создаем перед каждым тестом треугольник
+    @ParameterizedTest
+    @ValueSource(strings = {"BLUE", "RED", "GREY"})                                   //аннотация, где могут передаваться определенные параметры которые хотим передать. {"BLUE".....} - список стрингов, которые хотим видеть
+    void paintTriangleTest(String colour) {                                           //Colour colour принимаем и перекрашиваем в определенный цвет
+        Triangle triangle = new Triangle(3, 3, 3);
+        triangle.paint(colour);                                                       //перекрасим в новый цвет
+        assertEquals(colour, triangle.getColour().toString());                        //будем проверять, что новый цвет подходит через строку
+    }
+                                                                                      //тест на способ параметризации (метод paint с передачей строки) из/ triangle
+    @ParameterizedTest
+    @CsvSource(value = {"BLUE,RED", "RED,WHITE", "GREY,BLUE"})                        //Csv аннотация - работа через exele файлы(импорт их в текст), где могут передаваться определенные параметры которые хотим передать. {"BLUE".....} - список стрингов, которые хотим видеть. "BLUE,RED" - параметры можно только прописать в условиях (например поменять ред на блу)
+    void paintTriangleTest(Colour oldColour, String newColour) {                      //сюда принимаем параметры и перекрашиваем в определенный цвет
+        Triangle triangle = new Triangle(3, 3, 3, oldColour);                //oldColour -создаем треугольник
+        triangle.paint(newColour);                                                    //перекрасим в новый цвет
+        assertEquals(newColour, triangle.getColour().toString());                     //будем проверять, что новый цвет равен newColour
+    }
+    }
+
 }

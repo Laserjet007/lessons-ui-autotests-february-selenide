@@ -22,7 +22,7 @@ public class TriangleTest {
        // new Actions(new ChromeDriver());                         заглушка до написания самих тестов, что бы код не ломался
         // assertTrue( true );                                     //assert - проверяет условия
 //реализация теста: - первая составляющая из трех - Arrange:
-        Triangle triangle = new Triangle(3, 4, 5);        //готовим данные
+        Triangle triangle = new Triangle(3, 4, 5);        //готовим данные(неудобства такого метода в том, что данные могут содержать очень много строчек кода поэтому существует метод beforeEach, который готовит данные для всего раздела тестов) пример в parametrizedTriangletest
         int perimeter = triangle.countPerimeter();                 //следующая часть - Act:
         assertEquals(12,perimeter);                        //третья часть - Assert:
     }

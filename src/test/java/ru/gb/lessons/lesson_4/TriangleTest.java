@@ -1,10 +1,9 @@
-package ru.gb.lessons;
+package ru.gb.lessons.lesson_4;
 
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.gb.lessons.lesson_4.Triangle;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

@@ -23,7 +23,7 @@ public class LoginAndLogout {
                 capabilities(chromeOptions).create();                                           //capabilities() добавляем chromeOptions что бы исключить загрузку фото при тестировании
         webDriver.get("https://www.shatura.com/");                                              //в сценарии пишем страницу куда нужно перейти
         webDriver.manage().window().setSize(new Dimension(1500, 1100));             //настроить размеры окна браузера
-        webDriver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);                    //неявное ожидание - по дефолту каждого действия, ждать элемент
+        webDriver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);                  //неявное ожидание - по дефолту каждого действия, ждать элемент
         //webDriver.findElement(By.xpath(""));                                                  //метод для поиска элемента (findElements  - элементов)
         //webDriver.findElement(By.id(""));                                                     //метод для поиска элемента по id
         webDriver.findElement(By.xpath                                                          //clear - почистить;.click-кликнуть по элементу;.sendKeys-вписать текст в элемент;.getText -получить текст;.getLocation- получить локацию; .findElement - получить другой элемент из элемента; .getAttribute - получить атрибут;
@@ -38,16 +38,14 @@ public class LoginAndLogout {
         //new WebDriverWait(webDriver,5,500).until(                                             //ожидание , когда элемент станет видимым (именно элемент, а не как в предидущей строке - локатор)
         //      ExpectedConditions.visibilityOf(webDriver.findElement(By.xpath("//div[@class='modal__login']"))));
         modal__login.findElement(By.name("email")).sendKeys("laserjet007@rambler.ru");//ищем внутри созданной переменной, найти элемент по имени. sendKeys -ввод текста
-        modal__login.findElement(By.name("password")).sendKeys("999999999");       //то же самое с вводом пароля
+        modal__login.findElement(By.name("password")).sendKeys("999999999");          //то же самое с вводом пароля
         modal__login.findElement(By.className("btn__txt")).click();
         //modal__login.findElement(By.xpath(".//button[span[text()='Войти']]")).click           .// - точка означает найти элемент в созданной в идеи мной - классе элементов modal__login.)
         webDriver.findElement(By.xpath("//div[@class='signin-link']//span[@class='signin-link__title']")).click();
         //new WebDriverWait(webDriver,5).until(                                                 //подождать когда исчезнет элемент  в случае если он висит
         //        ExpectedConditions.invisibilityOf(modal__login));
-        webDriver.findElement(By.xpath("//div[@class='dropdown-menu show']//a[text()='Выйти']")).click();
+        //webDriver.findElement(By.xpath("//div[@class='dropdown-menu show']//a[text()='Выйти']")).click();
 
-        //Thread.sleep(5000);
-        //TODO:переделать в Selenide, костыль не нужен
         //try {
         //   modal__login.findElement(By.cssSelector("div.header_user")).click();
         //}catch (StaleElementReferenceException e){

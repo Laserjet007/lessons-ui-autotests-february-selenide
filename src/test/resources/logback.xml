@@ -1,0 +1,12 @@
+<!--настройка записи логирования            (<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern> - что и как сохраняем)-->
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="info">                             <!-- настройка уровня логирования TRACE < DEBUG < INFO < WARN < ERROR-->
+        <appender-ref ref="STDOUT" />               <!--STDOUT - вывод логов в консоль -->
+    </root>
+</configuration>

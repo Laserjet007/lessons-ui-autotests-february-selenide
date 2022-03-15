@@ -2,6 +2,8 @@ package ru.gb.lessons;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.Extensions;
+import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 import ru.gb.lessons.lesson_4.Colour;
@@ -12,7 +14,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@ExtendWith(BeforeAllExtension.class)                                              //создаем класс BeforeAllExtension. в результате чего перед всеми тестами можно будет указать необходимую нам информацию
+@ExtendWith(BeforeAllExtension.class)  //создаем класс BeforeAllExtension
 public class ParametrizedTriangleTest {
     @BeforeEach                                                                    //метод beforeEach, который готовит данные для всего раздела тестов
     void setUp(){

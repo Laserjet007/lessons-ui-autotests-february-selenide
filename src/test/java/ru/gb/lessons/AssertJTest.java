@@ -1,9 +1,11 @@
 package ru.gb.lessons;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import ru.gb.lessons.lesson_4.Colour;
 import ru.gb.lessons.lesson_4.Triangle;
 
 import java.util.stream.Stream;
@@ -47,4 +49,16 @@ public class AssertJTest {        public static Stream<Arguments> triangles() {
                 .isInstanceOf(IllegalArgumentException.class)                         //перечисляем что хотим проверить
                 .hasMessage(errorText);
     }
+//создаем тестовый метод для демонстрации возможностей библиотеки <groupId>org.assertj</groupId>
+    @Test
+    void similarTriangleTest() {
+        Triangle triangle = new Triangle(3, 3, 3);
+        Triangle similarTriangle = triangle.createSimilarTriangle(2);
+        assertThat(similarTriangle).usingRecursiveComparison()                        //начинаем проверять Triangle.
+                .ignoringFieldsOfTypes(Colour.class)                                  //можно проигнорировать класс
+                //.ignoringFields("colour")                                           //для того что бы не проверять цвет, а только стороны - можно использовать такой метод
+                .isEqualTo(new Triangle(6, 6, 6, Colour.BLUE));
+
+}
+
 }

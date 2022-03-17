@@ -1,15 +1,10 @@
 package ru.gb.lessons.lesson_5;
 
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -17,21 +12,21 @@ import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class LoginAndLogoutTest {
-    WebDriver webDriver;                                                                        // выносим веб драйвер в отдельную переменную (так как сокращаем текс всех тестов)
+public class LoginAndLogoutTest extends BaseTest{                                                 //для того что бы исключить в каждом тесте написания @BeforeEach и @AfterEach - можно унаследоваться от написанного ранее теста (делается это для сокращения текста теста - наглядности)(далее это возможно будет сделать через асерт)
+    //WebDriver webDriver;                                                                        // выносим веб драйвер в отдельную переменную (так как сокращаем текс всех тестов)
 
-    @BeforeEach                                                                                 //для того, что бы не повторялся лишний раз код первых трех строк каждого теста - необходимо вынести их в один метод объединяющий все тесты
-    void  setUp(){                                                                              //веб драйвер переносим в данном случае из тестов (для уменьшения кода)
-        ChromeOptions chromeOptions = new ChromeOptions();                                      //создаем переменную куда добавим условие capabilities() - не загружать фото сайта во время теста для ускорения
-        chromeOptions.addArguments("--blink-settings=imagesEnabled=false");                     //создаем аргумент для capabilities, который будет блокировать загрузку фото
-        webDriver = WebDriverManager.chromedriver().                                  //safaridriver().create(); упрощаем создание веб драйва добавляя в мавин депенденси <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->//<dependency>//    <groupId>io.github.bonigarcia</groupId>//    <artifactId>webdrivermanager</artifactId>//    <version>5.1.0</version>//</dependency>
-                capabilities(chromeOptions).create();                                           //capabilities() добавляем chromeOptions что бы исключить загрузку фото при тестировании
-    }
+    //@BeforeEach                                                                                 //для того, что бы не повторялся лишний раз код первых трех строк каждого теста - необходимо вынести их в один метод объединяющий все тесты
+    //void  setUp(){                                                                              //веб драйвер переносим в данном случае из тестов (для уменьшения кода)
+    //    ChromeOptions chromeOptions = new ChromeOptions();                                      //создаем переменную куда добавим условие capabilities() - не загружать фото сайта во время теста для ускорения
+    //    chromeOptions.addArguments("--blink-settings=imagesEnabled=false");                     //создаем аргумент для capabilities, который будет блокировать загрузку фото
+    //    webDriver = WebDriverManager.chromedriver().                                            //safaridriver().create(); упрощаем создание веб драйва добавляя в мавин депенденси <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->//<dependency>//    <groupId>io.github.bonigarcia</groupId>//    <artifactId>webdrivermanager</artifactId>//    <version>5.1.0</version>//</dependency>
+    //            capabilities(chromeOptions).create();                                           //capabilities() добавляем chromeOptions что бы исключить загрузку фото при тестировании
+    //}
 
-    @AfterEach
-    void  tearDown(){
-        webDriver.quit();                                                                       //выносим закрытие web driver из тестов
-    }
+    //@AfterEach
+    //void  tearDown(){
+    //    webDriver.quit();                                                                       //выносим закрытие web driver из тестов (остальные функции в теле теста лучше не писать - тест должен включать именно тест)
+    //}
 
     @Test
     void loginAndLogout(){

@@ -2,6 +2,8 @@ package ru.gb.lessons.lesson_5;
 
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -16,17 +18,30 @@ import java.util.concurrent.TimeUnit;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LoginAndLogoutTest {
+    WebDriver webDriver;                                                                        // выносим веб драйвер в отдельную переменную (так как сокращаем текс всех тестов)
 
+    @BeforeEach                                                                                 //для того, что бы не повторялся лишний раз код первых трех строк каждого теста - необходимо вынести их в один метод объединяющий все тесты
+    void  setUp(){                                                                              //веб драйвер переносим в данном случае из тестов (для уменьшения кода)
+        ChromeOptions chromeOptions = new ChromeOptions();                                      //создаем переменную куда добавим условие capabilities() - не загружать фото сайта во время теста для ускорения
+        chromeOptions.addArguments("--blink-settings=imagesEnabled=false");                     //создаем аргумент для capabilities, который будет блокировать загрузку фото
+        webDriver = WebDriverManager.chromedriver().                                  //safaridriver().create(); упрощаем создание веб драйва добавляя в мавин депенденси <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->//<dependency>//    <groupId>io.github.bonigarcia</groupId>//    <artifactId>webdrivermanager</artifactId>//    <version>5.1.0</version>//</dependency>
+                capabilities(chromeOptions).create();                                           //capabilities() добавляем chromeOptions что бы исключить загрузку фото при тестировании
+    }
+
+    @AfterEach
+    void  tearDown(){
+        webDriver.quit();                                                                       //выносим закрытие web driver из тестов
+    }
 
     @Test
     void loginAndLogout(){
-        ChromeOptions chromeOptions = new ChromeOptions();                                      //создаем переменную куда добавим условие capabilities() - не загружать фото сайта во время теста для ускорения
-        chromeOptions.addArguments("--blink-settings=imagesEnabled=false");                     //создаем аргумент для capabilities, который будет блокировать загрузку фото
-        WebDriver webDriver = WebDriverManager.chromedriver().                                  //safaridriver().create(); упрощаем создание веб драйва добавляя в мавин депенденси <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->//<dependency>//    <groupId>io.github.bonigarcia</groupId>//    <artifactId>webdrivermanager</artifactId>//    <version>5.1.0</version>//</dependency>
-                capabilities(chromeOptions).create();                                           //capabilities() добавляем chromeOptions что бы исключить загрузку фото при тестировании
+        //ChromeOptions chromeOptions = new ChromeOptions();                                    //создаем переменную куда добавим условие capabilities() - не загружать фото сайта во время теста для ускорения
+        //.addArguments("--blink-settings=imagesEnabled=false");                                //создаем аргумент для capabilities, который будет блокировать загрузку фото
+        //WebDriver webDriver = WebDriverManager.chromedriver().                                //safaridriver().create(); упрощаем создание веб драйва добавляя в мавин депенденси <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->//<dependency>//    <groupId>io.github.bonigarcia</groupId>//    <artifactId>webdrivermanager</artifactId>//    <version>5.1.0</version>//</dependency>
+        //        capabilities(chromeOptions).create();                                         //capabilities() добавляем chromeOptions что бы исключить загрузку фото при тестировании
         webDriver.get("https://www.shatura.com/");                                              //в сценарии пишем страницу куда нужно перейти
         webDriver.manage().window().setSize(new Dimension(1500, 1100));             //настроить размеры окна браузера
-        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);                 //неявное ожидание - по дефолту каждого действия, ждать элемент
+        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);                    //неявное ожидание - по дефолту каждого действия, ждать элемент
         //webDriver.findElement(By.xpath(""));                                                  //метод для поиска элемента (findElements  - элементов)
         //webDriver.findElement(By.id(""));                                                     //метод для поиска элемента по id
         webDriver.findElement(By.xpath                                                          //clear - почистить;.click-кликнуть по элементу;.sendKeys-вписать текст в элемент;.getText -получить текст;.getLocation- получить локацию; .findElement - получить другой элемент из элемента; .getAttribute - получить атрибут;
@@ -41,7 +56,7 @@ public class LoginAndLogoutTest {
         //new WebDriverWait(webDriver,5,500).until(                                             //ожидание , когда элемент станет видимым (именно элемент, а не как в предидущей строке - локатор)
         //      ExpectedConditions.visibilityOf(webDriver.findElement(By.xpath("//div[@class='modal__login']"))));
         modal__login.findElement(By.name("email")).sendKeys("laserjet007@rambler.ru");//ищем внутри созданной переменной, найти элемент по имени. sendKeys -ввод текста
-        modal__login.findElement(By.name("password")).sendKeys("999999999");         //то же самое с вводом пароля
+        modal__login.findElement(By.name("password")).sendKeys("999999999");       //то же самое с вводом пароля
         modal__login.findElement(By.className("btn__txt")).click();
         //modal__login.findElement(By.xpath(".//button[span[text()='Войти']]")).click           .// - точка означает найти элемент в созданной в идеи мной - классе элементов modal__login.)
         webDriver.findElement(By.xpath("//div[@class='signin-link']//span[@class='signin-link__title']")).click();
@@ -50,21 +65,19 @@ public class LoginAndLogoutTest {
         webDriver.findElement(By.xpath("//div[@class='dropdown-menu show']//a[text()='Выйти']")).click();
 
         // Thread.sleep(36000);                                                                 //остановка на 10 секунд проверить откроется ли страница
-        webDriver.quit();                                                                       //закрываем webdriver
-
     }
 
 //второй тест на негативный сценарий (при нажатии на "Войти" будет выводиться определенная ошибка, которую необходимо найти)
 
     @Test
     void incorrectPasswordTest() {
-        ChromeOptions chromeOptions = new ChromeOptions();                                      //создаем переменную куда добавим условие capabilities() - не загружать фото сайта во время теста для ускорения
-        chromeOptions.addArguments("--blink-settings=imagesEnabled=false");                     //создаем аргумент для capabilities, который будет блокировать загрузку фото
-        WebDriver webDriver  = WebDriverManager.chromedriver().                                  //safaridriver().create(); упрощаем создание веб драйва добавляя в мавин депенденси <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->//<dependency>//    <groupId>io.github.bonigarcia</groupId>//    <artifactId>webdrivermanager</artifactId>//    <version>5.1.0</version>//</dependency>
-                capabilities(chromeOptions).create();                                           //capabilities() добавляем chromeOptions что бы исключить загрузку фото при тестировании
+        //ChromeOptions chromeOptions = new ChromeOptions();                                    //создаем переменную куда добавим условие capabilities() - не загружать фото сайта во время теста для ускорения
+        //chromeOptions.addArguments("--blink-settings=imagesEnabled=false");                   //создаем аргумент для capabilities, который будет блокировать загрузку фото
+        //WebDriver webDriver  = WebDriverManager.chromedriver().                               //safaridriver().create(); упрощаем создание веб драйва добавляя в мавин депенденси <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->//<dependency>//    <groupId>io.github.bonigarcia</groupId>//    <artifactId>webdrivermanager</artifactId>//    <version>5.1.0</version>//</dependency>
+        //        capabilities(chromeOptions).create();                                         //capabilities() добавляем chromeOptions что бы исключить загрузку фото при тестировании
         webDriver.get("https://www.shatura.com/");                                              //в сценарии пишем страницу куда нужно перейти
         webDriver.manage().window().setSize(new Dimension(1500, 1100));             //настроить размеры окна браузера
-        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);                 //неявное ожидание - по дефолту каждого действия, ждать элемент
+        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);                    //неявное ожидание - по дефолту каждого действия, ждать элемент
         //webDriver.findElement(By.xpath(""));                                                  //метод для поиска элемента (findElements  - элементов)
         //webDriver.findElement(By.id(""));                                                     //метод для поиска элемента по id
         webDriver.findElement(By.xpath                                                          //clear - почистить;.click-кликнуть по элементу;.sendKeys-вписать текст в элемент;.getText -получить текст;.getLocation- получить локацию; .findElement - получить другой элемент из элемента; .getAttribute - получить атрибут;
@@ -85,11 +98,11 @@ public class LoginAndLogoutTest {
         //       .presenceOfElementLocated((By.xpath("//span[text()='Неверный логин или пароль.']")))Неверный логин или пароль.
         assertThat(new WebDriverWait(webDriver, 5).until(ExpectedConditions       //вариант проверки с ассертом
                 .presenceOfElementLocated(By.xpath("//span[text()='Неверный логин или пароль.']")))
-                .getText()).as("был указан неверный пароль").isEqualTo("Неверный логин или пароль.");                    // проверяем текст на соответствие
+                .getText()).as("был указан неверный пароль").isEqualTo("Неверный логин или пароль.");  // проверяем текст на соответствие текст (критично важно для тестирования)
 
 
 
-        webDriver.quit();
+
 
     }
 }

@@ -57,9 +57,11 @@ public class LoginAndLogoutTest extends BaseTest{                               
         webDriver.findElement(By.xpath("//div[@class='signin-link']//span[@class='signin-link__title']")).click();
         //new WebDriverWait(webDriver,5).until(                                                 //подождать когда исчезнет элемент  в случае если он висит
         //        ExpectedConditions.invisibilityOf(modal__login));
-        webDriver.findElement(By.xpath("//div[@class='dropdown-menu show']//a[text()='Выйти']")).click();
-
+        //webDriver.findElement(By.xpath("//div[@class='dropdown-menu show']//a[text()='Выйти']")).click();
         // Thread.sleep(36000);                                                                 //остановка на 10 секунд проверить откроется ли страница
+        assertThat(new WebDriverWait(webDriver, 5).until(ExpectedConditions       //вариант проверки с ассертом
+                        .presenceOfElementLocated(By.xpath("//a[@data-toggle='dropdown']//span[@class='signin-link__title']")))
+                .getText()).as(" Александр 1 ").isEqualTo(" Александр 1 ");  // проверяем текст на соответствие текст (критично важно для тестирования)
     }
 
 //второй тест на негативный сценарий (при нажатии на "Войти" будет выводиться определенная ошибка, которую необходимо найти)

@@ -47,7 +47,7 @@ public class AddProductToCartTest extends BaseTest {                            
         webDriver.findElement(By.xpath(
                 "//div[@class='catalog-nav__section-list']//span[@class='catalog-nav__section-list-li-title']")).click();
 
-//findElements:(найти все элементы в данном div(Найдем все карточки, а потом будем с ними работать))
+//findElements:(найти все элементы в данном div(Найдем все карточки, а потом будем с ними работать)).
         List<WebElement> products = webDriver.findElements(By.xpath(                         //findElement (найти все элементы в данном div(Найдем все карточки, а потом будем с ними работать))
                 "//div[@class='goods-catalog__collection col-lg-6']"));
         WebElement selectedProduct = products.stream()                                       //пробрасываем запрос
@@ -69,7 +69,7 @@ public class AddProductToCartTest extends BaseTest {                            
         List<String> actualProductsInCart = webDriver.findElement(By.className("items-in-basket__item-inner")) //берем блок элементов
                 .findElements(By.xpath("./a"))
                 .stream()
-                .map(product -> product.findElement(By.xpath("//div[@class='items-in-basket__item-inner']//a")).getText())                   // метод map: когда в .stream() есть некая сущность, из неё можем взять некую под сущность через этот метод (с помощью метода мап мы можем и преобразовать сущность начальную в сущность которую хотим получить - например текст)
+                .map(product -> product.findElement(By.xpath("//div[@class='items-in-basket__item-inner']//a")).getText())   // метод map: когда в .stream() есть некая сущность, из неё можем взять некую под сущность через этот метод (с помощью метода мап мы можем и преобразовать сущность начальную в сущность которую хотим получить - например текст)
                 .collect(Collectors.toList());                                                                 //преобразуем в текстовую коллекцию
 //проверка ассерта:
         assertThat(actualProductsInCart).containsExactlyInAnyOrder(productName);                               //импортируем метод Assertions.assertThat указывая с чам сравнивать actualProductsInCart / далее проверяем, что все документы в этом листе соответствуют productName

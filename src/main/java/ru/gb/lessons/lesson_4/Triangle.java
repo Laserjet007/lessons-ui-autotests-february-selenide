@@ -44,22 +44,23 @@ public class Triangle {
         this.colour = colour;
     }
 //еще способ параметризации (метод paint с передачей строки)
-        public void paint(String colour) {                          //передаем строку
+    public void paint(String colour) {                              //передаем строку
         checkSidesArePositive();                                    //проверяем ошибку из конструктора выше
+        checkOneSideIsSmallerThanSumOfOthers();
         paint(Colour.valueOf(colour));                              //вызываем paint (все то же самое как в предидущем конструкторе, только передаем строку аргументов)
             }
     // TODO: 09.03.2022 реализовать метод
     public double countArea() {                                     // метод
         checkSidesArePositive();                                    //проверяем ошибку из конструктора выше
-        checkOneSideIsSmallerThanSumOfOthers();
+        checkOneSideIsSmallerThanSumOfOthers();                     //округлять необходимо до сотых
         return 0;                                                   // с начала возвращаем 0 - не пишем реализацию
     }
 
 //метод демонстрирующий работу библиотеки <groupId>org.assertj</groupId>
-    public Triangle createSimilarTriangle(int coef) {                   // метод будет создавать "подобные" треугольники (где все стороны больше ему подобного треугольника на кукую то определенную величину (коэффициент подобия - int coef))
+    public Triangle createSimilarTriangle(int coef) {               // метод будет создавать "подобные" треугольники (где все стороны больше ему подобного треугольника на кукую то определенную величину (коэффициент подобия - int coef))
         checkSidesArePositive();                                    //проверяем ошибку из конструктора выше
         checkOneSideIsSmallerThanSumOfOthers();
-        // TODO: 14.03.22  добавить проверку коэффициента
+    // TODO: 14.03.22  добавить проверку коэффициента
         return new Triangle(a * coef, b * coef, c * coef);  //возвращаем треугольник
     }
 

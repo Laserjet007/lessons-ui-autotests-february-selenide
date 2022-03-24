@@ -31,7 +31,7 @@ public class CheckVacanciesTabTest extends BaseTest{                            
         List<String> actualProductsInCart = webDriver.findElement(By.className("table")) //берем блок элементов
                 .findElements(By.xpath("//th[text()='Вакансия']"))
                 .stream()
-                .map(product -> product.findElement(By.xpath("//th[text()='Вакансия']")).getText())                   // метод map: когда в .stream() есть некая сущность, из неё можем взять некую под сущность через этот метод (с помощью метода мап мы можем и преобразовать сущность начальную в сущность которую хотим получить - например текст)
+                .map(product -> product.findElement(By.xpath("//th[text()='Вакансия']")).getText())   // метод map: когда в .stream() есть некая сущность, из неё можем взять некую под сущность через этот метод (с помощью метода мап мы можем и преобразовать сущность начальную в сущность которую хотим получить - например текст)
                 .collect(Collectors.toList());                                                                 //преобразуем в текстовую коллекцию
 //проверка ассерта:
         assertThat(actualProductsInCart).containsExactlyInAnyOrder(productName);                               //импортируем метод Assertions.assertThat указывая с чам сравнивать actualProductsInCart / далее проверяем, что все документы в этом листе соответствуют productName

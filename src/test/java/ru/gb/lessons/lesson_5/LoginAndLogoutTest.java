@@ -58,7 +58,7 @@ public class LoginAndLogoutTest extends BaseTest{                               
         //new WebDriverWait(webDriver,5).until(                                                 //подождать когда исчезнет элемент  в случае если он висит
         //        ExpectedConditions.invisibilityOf(modal__login));
         //webDriver.findElement(By.xpath("//div[@class='dropdown-menu show']//a[text()='Выйти']")).click();
-        // Thread.sleep(36000);// остановка на 10 секунд проверить откроется ли страница
+        // Thread.sleep(36000);                                                                 // остановка на 10 секунд проверить откроется ли страница
 //вариант проверки с ассертом:
         assertThat(new WebDriverWait(webDriver, 5).until(ExpectedConditions       //вариант проверки с ассертом
                         .presenceOfElementLocated(By.xpath("//a[@data-toggle='dropdown']//span[@class='signin-link__title']")))

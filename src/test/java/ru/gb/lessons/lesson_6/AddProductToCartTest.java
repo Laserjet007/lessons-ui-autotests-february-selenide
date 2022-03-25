@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
-import ru.gb.lessons.lesson_5.BaseTest;
 
 import java.util.List;
 import java.util.NoSuchElementException;

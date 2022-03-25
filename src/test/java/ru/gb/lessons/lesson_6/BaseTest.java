@@ -1,8 +1,9 @@
-package ru.gb.lessons.lesson_5;
+package ru.gb.lessons.lesson_6;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
@@ -21,8 +22,8 @@ public class BaseTest {                                                         
         webDriver = WebDriverManager.chromedriver().                                            //safaridriver().create(); упрощаем создание веб драйва добавляя в мавин депенденси <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->//<dependency>//    <groupId>io.github.bonigarcia</groupId>//    <artifactId>webdrivermanager</artifactId>//    <version>5.1.0</version>//</dependency>
                 capabilities(chromeOptions).create();                                           //capabilities() добавляем chromeOptions что бы исключить загрузку фото при тестировании
         webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);                    //неявное ожидание - по дефолту каждого действия, ждать элемент
-
-
+        webDriver.get("https://www.shatura.com/");                                              //в сценарии пишем страницу куда нужно перейти
+        webDriver.manage().window().setSize(new Dimension(2000, 1500));             //настроить размеры окна браузера
     }
 
     @AfterEach

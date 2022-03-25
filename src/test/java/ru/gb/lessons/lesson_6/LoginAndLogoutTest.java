@@ -1,13 +1,11 @@
 package ru.gb.lessons.lesson_6;
 
-
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import ru.gb.lessons.lesson_5.BaseTest;
 import ru.gb.lessons.lesson_6.pages.MainPage;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,13 +14,15 @@ public class LoginAndLogoutTest extends BaseTest {
 
     @Test
     void loginAndLogout(){
-        webDriver.get("https://www.shatura.com/");                                              //в сценарии пишем страницу куда нужно перейти
-        webDriver.manage().window().setSize(new Dimension(1500, 1100));             //настроить размеры окна браузера
-
-        MainPage mainPage = new MainPage(webDriver);
-        mainPage.login();
-        mainPage.logout();
-        mainPage.checkLoginButtonIsVisible();
+//        webDriver.get("https://www.shatura.com/");                                            //в сценарии пишем страницу куда нужно перейти
+//        MainPage mainPage = new MainPage(webDriver);                                          //уменьшаем код после корректировки и выноса всех методов в MainPage
+//        mainPage.login();
+//        mainPage.logout();
+//        mainPage.checkLoginButtonIsVisible();
+        new MainPage(webDriver)
+                .login(LOGIN,PASSWORD)                      //уменьшаем код после корректировки
+                .logout()
+                .checkLoginButtonIsVisible();
     }
 
     @Test

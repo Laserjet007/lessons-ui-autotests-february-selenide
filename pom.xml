@@ -10,7 +10,10 @@
   <properties>
     <selenium.version>3.141.59</selenium.version>
     <junit.version>5.8.2</junit.version>
+    <aspectj.version>1.9.7</aspectj.version>
+    <allure.version>2.16.1</allure.version>
   </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
@@ -37,18 +40,14 @@
       <artifactId>assertj-core</artifactId>
       <version>3.22.0</version>
     </dependency>
+
+
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-core</artifactId>
       <version>1.2.6</version>
     </dependency>
 
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <version>1.7.30</version>
-      <scope>test</scope>
-    </dependency>
     <!--        <dependency>-->
     <!--            <groupId>org.slf4j</groupId>-->
     <!--            <artifactId>slf4j-api</artifactId>-->
@@ -61,7 +60,15 @@
       <artifactId>logback-classic</artifactId>
       <version>1.2.6</version>
     </dependency>
+
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-junit5</artifactId>
+      <version>${allure.version}</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
+
   <build>
     <plugins>
       <plugin>
@@ -75,13 +82,39 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.0.0-M5</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
         <version>3.11.0</version>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.0</version>
+        <configuration>
+          <testFailureIgnore>false</testFailureIgnore>
+          <argLine>
+            -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+          </argLine>
+          <systemProperties>
+            <property>
+              <name>junit.jupiter.extensions.autodetection.enabled</name>
+              <value>true</value>
+            </property>
+          </systemProperties>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-maven</artifactId>
+        <version>2.11.2</version>
+        <configuration>
+          <reportVersion>${allure.version}</reportVersion>
+        </configuration>
       </plugin>
     </plugins>
   </build>

@@ -1,5 +1,6 @@
 package ru.gb.lessons.lesson_6;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,6 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CheckHomeProductСatalogBedsByPopularityTest extends BaseTest {
 
     @Test
+    @DisplayName("Проверка вкладки: Каталог Товаров: Кровати: по популярности")
     void checkHomeProductСatalogBedsByPopularityTest() {
 
         String productName = "По популярности";

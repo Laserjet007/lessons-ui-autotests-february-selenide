@@ -1,5 +1,6 @@
 package ru.gb.lessons.lesson_6;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -29,6 +30,7 @@ public class AddProductToCartTest extends BaseTest {                            
     //}
 
     @Test
+    @DisplayName("Добавление товара в корзину")
     void addProductToCart () {
         String productName ="Композиция №08, спальня (2FCC+H1E+AS6Мelange996+K1C+E1C+ZFE)";     //(для поиска элементов по div) выносим отдельную переменную для
         //String composition1Name ="Композиция №08, спальня (2FCC+H1E+AS6Мelange996+K1C+E1C+ZFE)";

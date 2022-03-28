@@ -1,5 +1,6 @@
 package ru.gb.lessons.lesson_6;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -13,6 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class LoginAndLogoutTest extends BaseTest {
 
     @Test
+    @DisplayName("Успешная авторизация и выход")
     void loginAndLogout(){
 //        webDriver.get("https://www.shatura.com/");                                            //в сценарии пишем страницу куда нужно перейти
 //        MainPage mainPage = new MainPage(webDriver);                                          //уменьшаем код после корректировки и выноса всех методов в MainPage
@@ -26,6 +28,7 @@ public class LoginAndLogoutTest extends BaseTest {
     }
 
     @Test
+    @DisplayName("Авторизация: Негативный сценарий: неверный пароль")
     void incorrectPasswordTest() {
         webDriver.get("https://www.shatura.com/");                                              //в сценарии пишем страницу куда нужно перейти
         webDriver.manage().window().setSize(new Dimension(1500, 1100));             //настроить размеры окна браузера

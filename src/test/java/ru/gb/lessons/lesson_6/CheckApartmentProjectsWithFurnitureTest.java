@@ -1,5 +1,7 @@
 package ru.gb.lessons.lesson_6;
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -9,13 +11,15 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("Проекты квартир с мебелью")
 public class CheckApartmentProjectsWithFurnitureTest extends BaseTest {                                                //для того что бы исключить в каждом тесте написания @BeforeEach и @AfterEach - можно унаследоваться от написанного ранее теста (делается это для сокращения текста теста - наглядности)(далее это возможно будет сделать через асерт)
 
     @Test
     @DisplayName("Проверка вкладки: Проекты квартир с мебелью")
-    void checkApartmentProjectsWithFurniture () {
+    @Severity(SeverityLevel.MINOR)
+    void checkApartmentProjectsWithFurniture() {
 
-        String productName ="ЖК Видный Берег 2. Квартира-студия (интерьер в классическом стиле)";
+        String productName = "ЖК Видный Берег 2. Квартира-студия (интерьер в классическом стиле)";
 
         webDriver.findElement(By.xpath(
                 "//div[text()='Готовые решения']")).click();

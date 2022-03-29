@@ -1,5 +1,7 @@
 package ru.gb.lessons.lesson_6;
 
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -13,6 +15,7 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("Корзина")
 public class AddProductToCartTest extends BaseTest {                                            //для того что бы исключить в каждом тесте написания @BeforeEach и @AfterEach - можно унаследоваться от написанного ранее теста (далее это возможно будет сделать через асерт)
     //WebDriver webDriver;                                                                      // выносим веб драйвер в отдельную переменную (так как сокращаем текс всех тестов)
 
@@ -31,8 +34,10 @@ public class AddProductToCartTest extends BaseTest {                            
 
     @Test
     @DisplayName("Добавление товара в корзину")
-    void addProductToCart () {
-        String productName ="Композиция №08, спальня (2FCC+H1E+AS6Мelange996+K1C+E1C+ZFE)";     //(для поиска элементов по div) выносим отдельную переменную для
+    @Severity(SeverityLevel.BLOCKER)
+        //указываем значимость теста (BLOCKER - бесполезно тестирование без этого теста)
+    void addProductToCart() {
+        String productName = "Композиция №08, спальня (2FCC+H1E+AS6Мelange996+K1C+E1C+ZFE)";     //(для поиска элементов по div) выносим отдельную переменную для
         //String composition1Name ="Композиция №08, спальня (2FCC+H1E+AS6Мelange996+K1C+E1C+ZFE)";
         //ChromeOptions chromeOptions = new ChromeOptions();
         //chromeOptions.addArguments("--blink-settings=imagesEnabled=false");
@@ -77,16 +82,16 @@ public class AddProductToCartTest extends BaseTest {                            
         assertThat(actualProductsInCart).containsExactlyInAnyOrder(productName);                               //импортируем метод Assertions.assertThat указывая с чам сравнивать actualProductsInCart / далее проверяем, что все документы в этом листе соответствуют productName
     }
 /**   пример просмотра xpath на исчезающем элементе (остановка для решения различных задач) - пишется в консоли
-*                setTimeout(function() {debugger;}, 3000)
-*/
+ *                setTimeout(function() {debugger;}, 3000)
+ */
 //вывод текста в терминал (типа асерта) (так не делается, потому, что даже если что-то упадет на сайте - тест сработает (сравнивает не машина))
-        //System.out.print("Actual products: ");
-                                                                                           //список того, что есть на самом деле:
-        //webDriver.findElement(By.className("items-in-basket__item-inner"))               //берем блок элементов
-        //        .findElements(By.xpath("./a"))                                           // взять детей элемента и вывести внутренний
-        //        .forEach(product -> System.out.print(product.getText() + " "));          //+ " "  добавить пробел, что бы не писать вместе
-        //System.out.println();
-        //System.out.println("Expected product: " + productName);                          //список того, что нужно получить:
+    //System.out.print("Actual products: ");
+    //список того, что есть на самом деле:
+    //webDriver.findElement(By.className("items-in-basket__item-inner"))               //берем блок элементов
+    //        .findElements(By.xpath("./a"))                                           // взять детей элемента и вывести внутренний
+    //        .forEach(product -> System.out.print(product.getText() + " "));          //+ " "  добавить пробел, что бы не писать вместе
+    //System.out.println();
+    //System.out.println("Expected product: " + productName);                          //список того, что нужно получить:
 
-        //Thread.sleep(16000);
+    //Thread.sleep(16000);
 }

@@ -8,15 +8,15 @@
   <name>lessons-ui-autotests-february</name>
   <packaging>jar</packaging>
   <properties>
-    <selenium.version>3.141.59</selenium.version>
+    <selenide.version>5.25.1</selenide.version>
     <junit.version>5.8.2</junit.version>
     <aspectj.version>1.9.7</aspectj.version>
     <allure.version>2.16.1</allure.version>
   </properties>
 
 
-  <dependencies>
-    <dependency>
+ <dependencies>
+<!--   <dependency>                                  при работе с селенидом данные библиотеки не нужны - так как содержат их
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
       <version>${selenium.version}</version>
@@ -25,7 +25,7 @@
       <groupId>io.github.bonigarcia</groupId>
       <artifactId>webdrivermanager</artifactId>
       <version>5.0.2</version>
-    </dependency>
+    </dependency>-->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
@@ -68,6 +68,14 @@
       <version>${allure.version}</version>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>com.codeborne</groupId>
+      <artifactId>selenide</artifactId>
+      <version>${selenide.version}</version>
+    </dependency>
+
+
   </dependencies>
 
   <build>

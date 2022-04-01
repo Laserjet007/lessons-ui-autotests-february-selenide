@@ -3,11 +3,17 @@ package ru.gb.lessons.lesson_8;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import ru.gb.lessons.lesson_8.extensions.UITestExtension;
 import ru.gb.lessons.lesson_8.pages.MainPage;
 import ru.gb.lessons.lesson_8.pages.block.LoginPopup;
 
+import static ru.gb.lessons.lesson_8.extensions.UITestExtension.LOGIN;
+import static ru.gb.lessons.lesson_8.extensions.UITestExtension.user;
+
 @DisplayName("Авторизация")
-public class LoginAndLogoutTest extends BaseTest {
+@ExtendWith(UITestExtension.class)
+public class LoginAndLogoutTest {
 
     @Test
     @DisplayName("Успешные Авторизация и выход из системы")

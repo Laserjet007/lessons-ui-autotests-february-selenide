@@ -14,7 +14,7 @@ public class CartPage extends BasePage {
     @Step("Проверить, что в корзине продукты: {productNames}")
     public void checkCartContainsProducts(String... productNames) {
         $(By.className("cart-table"))
-            .$$("./div")
+            .$$("./div//a[@class='cart-table']")
             .shouldHave(CollectionCondition.exactTextsCaseSensitiveInAnyOrder(productNames));
 
 //        List<String> actualProductsInCart = webDriver.findElement(By.className("cart-table"))

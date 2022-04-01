@@ -4,13 +4,15 @@ import io.qameta.allure.Allure;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import ru.gb.lessons.lesson_8.extensions.UITestExtension;
 import ru.gb.lessons.lesson_8.pages.MainPage;
 
 @DisplayName("Корзина")
-//@ExtendWith(UITestExtension.class)
-public class AddProductTest extends BaseTest {
+@ExtendWith(UITestExtension.class)
+public class AddProductTest {
 
 
     @ParameterizedTest(name = "Добавление товара {0} в корзину")

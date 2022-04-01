@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import ru.gb.lessons.lesson_8.pages.BaseView;
 import ru.gb.lessons.lesson_8.pages.ProductPage;
 
-import java.time.Duration;
+import java.time.Duration; /
 
 import static com.codeborne.selenide.Selenide.*;
 

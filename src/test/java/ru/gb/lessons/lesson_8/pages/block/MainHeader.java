@@ -4,12 +4,11 @@ package ru.gb.lessons.lesson_8.pages.block;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebDriver;
-import ru.gb.lessons.lesson_8.pages.BaseView;
 import ru.gb.lessons.lesson_8.pages.ProductPage;
 
-import java.time.Duration; /
+import java.time.Duration;
 
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class MainHeader {
@@ -42,7 +41,7 @@ public class MainHeader {
     @Step("Кликнуть на кнопку 'Выйти'")
     public MainHeader logout() {
         $("div.header__user").click();            //css локаторы обозначаются просто $
-        $x("//a[text()='Выйти']").should(Condition.visible.because("так как авторизованы"), Duration.ofSeconds(5))   // ожидание появления элемента
+        $(byText("Выйти")).should(Condition.visible.because("так как авторизованы"), Duration.ofSeconds(5))   // ожидание появления элемента
         .click();
 //        new WebDriverWait(webDriver, 5).until(ExpectedConditions.visibilityOf(webDriver.findElement(By.xpath("//a[text()='Выйти']"))))
 //                .click();

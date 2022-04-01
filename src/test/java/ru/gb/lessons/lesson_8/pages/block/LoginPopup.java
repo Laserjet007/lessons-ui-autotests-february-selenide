@@ -5,7 +5,6 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WrapsElement;
 import ru.gb.lessons.lesson_8.pojo.User;
 
@@ -14,13 +13,12 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class LoginPopup implements WrapsElement {
     @Getter
-    private SelenideElement wrappedElement;                                                               //в место WebElement в силиниде используют  SelenideElement
-    private WebDriver webDriver;
-
-    public LoginPopup(WebDriver webDriver) {
-        this.webDriver = webDriver;
-        this.wrappedElement = $(By.xpath("//div[@class='popup-login__tab is-active']"));               // $ можно заменить findElement
-    }
+    private final SelenideElement wrappedElement = $(By.xpath("//div[@class='popup-login__tab is-active']"));   //в место WebElement в силиниде используют  SelenideElement
+//    private WebDriver webDriver;
+//    public LoginPopup(WebDriver webDriver) {
+//        this.webDriver = webDriver;
+//        this.wrappedElement = $(By.xpath("//div[@class='popup-login__tab is-active']"));               // $ можно заменить findElement
+//    }
 
     @Step("Авторизоваться юзером {user.login} {user.password}")
     public MainHeader login(User user) {

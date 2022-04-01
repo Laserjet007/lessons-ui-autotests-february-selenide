@@ -1,7 +1,6 @@
 package ru.gb.lessons.lesson_8;
 
 import io.qameta.allure.*;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.gb.lessons.lesson_8.pages.MainPage;
@@ -20,10 +19,9 @@ public class LoginAndLogoutTest extends BaseTest {
     @Issue("")
     @Story("")
     void loginAndLogout() {
-        new MainPage(webDriver)
+        new MainPage()
                 .getHeader()
                 .clickLoginButton()
-                .login(LOGIN, PASSWORD)
                 .login(user)
                 .logout()
                 .checkLoginButtonIsVisible();
@@ -33,7 +31,7 @@ public class LoginAndLogoutTest extends BaseTest {
     @DisplayName("Авторизация: Негативный сценарий: неверный пароль")
     @Severity(SeverityLevel.NORMAL)
     void incorrectPasswordTest() {
-        LoginPopup loginPopup = new MainPage(webDriver)
+        LoginPopup loginPopup = new MainPage()
                 .getHeader()
                 .clickLoginButton();
         loginPopup.login(LOGIN, "incorrectPassword");

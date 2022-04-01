@@ -8,7 +8,7 @@ public class BasePage {
 //        super(webDriver);
 //    }
 
-    public MainHeader getHeader() {
+    public MainHeader getHeader()  {
         return new MainHeader();
     }
 }

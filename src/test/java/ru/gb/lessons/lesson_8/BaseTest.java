@@ -1,4 +1,4 @@
-package ru.gb.lessons.lesson_8;
+//package ru.gb.lessons.lesson_8;
 
 //import static com.codeborne.selenide.Selenide.open;
 

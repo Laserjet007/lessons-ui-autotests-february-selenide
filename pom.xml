@@ -8,10 +8,10 @@
   <name>lessons-ui-autotests-february</name>
   <packaging>jar</packaging>
   <properties>
-    <selenide.version>5.25.1</selenide.version>
+    <selenide.version>6.3.5</selenide.version>
     <junit.version>5.8.2</junit.version>
     <aspectj.version>1.9.7</aspectj.version>
-    <allure.version>2.16.1</allure.version>
+    <allure.version>2.17.3</allure.version>
   </properties>
 
 
@@ -46,7 +46,7 @@
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-core</artifactId>
-      <version>1.2.6</version>
+      <version>1.2.11</version>
     </dependency>
 
     <!--        <dependency>-->
@@ -59,7 +59,7 @@
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
-      <version>1.2.6</version>
+      <version>1.2.11</version>
     </dependency>
 
     <dependency>
@@ -80,6 +80,18 @@
      <artifactId>allure-selenide</artifactId>
      <version>${allure.version}</version>
    </dependency>
+   <dependency>
+     <groupId>timbre-ns-pattern-level</groupId>
+     <artifactId>timbre-ns-pattern-level</artifactId>
+     <version>0.1.2</version>
+     <scope>compile</scope>
+   </dependency>
+     <dependency>
+         <groupId>mourjo</groupId>
+         <artifactId>ring-devel</artifactId>
+         <version>1.0.0-1.8.1</version>
+         <scope>compile</scope>
+     </dependency>
 
  </dependencies>
 
@@ -132,6 +144,13 @@
       </plugin>
     </plugins>
   </build>
+  <repositories>
+    <repository>
+      <id>clojars</id>
+      <name>Clojars</name>
+      <url>https://repo.clojars.org/</url>
+    </repository>
+  </repositories>
 </project>
 <!--<?xml version="1.0" encoding="UTF-8"?>-->
 

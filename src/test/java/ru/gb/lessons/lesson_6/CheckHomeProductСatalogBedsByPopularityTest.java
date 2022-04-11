@@ -30,6 +30,6 @@ public class CheckHomeProductСatalogBedsByPopularityTest extends BaseTest {
         assertThat(new WebDriverWait(webDriver, 5).until(ExpectedConditions                             //вариант проверки с ассертом
                         .presenceOfElementLocated(By.xpath("//div[@class='filter']//*[contains(text(),'Подбор по параметрам')]")))
                 .getText()).as("Подбор по параметрам").isEqualTo("Подбор по параметрам");                      // проверяем текст на соответствие текст (критично важно для тестирования)
-        webDriver.quit();
+
     }
 }

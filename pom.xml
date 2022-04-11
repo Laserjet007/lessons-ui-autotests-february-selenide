@@ -8,7 +8,7 @@
   <name>lessons-ui-autotests-february</name>
   <packaging>jar</packaging>
   <properties>
-    <selenide.version>6.3.5</selenide.version>
+    <selenide.version>6.4.0</selenide.version>
     <junit.version>5.8.2</junit.version>
     <aspectj.version>1.9.7</aspectj.version>
     <allure.version>2.17.3</allure.version>
